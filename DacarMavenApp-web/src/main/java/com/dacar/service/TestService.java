@@ -31,6 +31,9 @@ import javax.persistence.PersistenceContext;
 @LocalBean
 public class TestService {
 
+  @EJB
+  private DacarMapService dacarMapService;
+
   @PersistenceContext(unitName = "DacarWebModulePU")
   private EntityManager em;
 
@@ -149,7 +152,7 @@ public class TestService {
     String ashwood = "1301  Ashwood Court San Mateo, CA 94402";
     String colgate = "510  colgate wy, san mateo";
     String amnesia = "Amnesia, Valencia Ave, San Francisco CA";
-    String chapel = "The Chapel, Valencia Ave, San Francisco";
+    String chapel = "The Chapel, Valencia St, San Francisco";
     String foreignCinema = "Foreign Cinema, San Francisco, CA";
     String monksCellar = "The Monk's Cellar, San Francisco, CA";
 
@@ -167,8 +170,7 @@ public class TestService {
     final RideRequest req = new RideRequest();
     req.setStartLocation(formatLocation(startLocation));
     req.setEndLocation(formatLocation(endLocation));
-    DacarMapService mapService = new DacarMapService();
-    req.setDepartureTime(mapService.formatDate(leaveBy));
+    req.setDepartureTime(dacarMapService.formatDate(leaveBy));
 
     reqFacade.create(req);
 

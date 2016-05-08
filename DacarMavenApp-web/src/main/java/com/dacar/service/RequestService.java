@@ -15,10 +15,10 @@ import javax.ejb.EJB;
  */
 public abstract class RequestService {
 
-  Class reqClass;
+  private Class reqClass;
 
   @EJB
-  RideRequestFacade facade;
+  private RideRequestFacade facade;
 
   protected RequestService(Class reqClass) {
     this.reqClass = reqClass;

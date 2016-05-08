@@ -24,13 +24,13 @@ import javax.ejb.Singleton;
 public class NewReqService extends RequestService {
 
   @EJB
-  MapDataService mapService;
+  private MapDataService mapService;
 
   @EJB
-  RideRequestFacade reqFacade;
+  private RideRequestFacade reqFacade;
 
   @EJB
-  UnmatchedPoolFacade unmatched;
+  private UnmatchedPoolFacade unmatched;
 
   public NewReqService() {
     super(NewReqService.class);

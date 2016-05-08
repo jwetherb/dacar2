@@ -53,7 +53,7 @@ public class RideRequestService {
   }
 
   @Schedule(dayOfWeek = "*", month = "*", hour = "*", dayOfMonth = "*", year = "*", minute = "*", second = "0,10,20,30,40,50")
-  public void myTimer() {
+  private void myTimer() {
 
     if (!enabled) {
       return;

@@ -163,7 +163,7 @@ public class MapDataService {
    * route adds to this on. Store these values in ascending order by minutes. Since each GR may have multiple paths
    * @param req 
    */
-  void processGR(RideRequest req) {
+  public void processGR(RideRequest req) {
     
   }
 }

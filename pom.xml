@@ -7,10 +7,7 @@
   <packaging>pom</packaging>
   <name>DacarMavenApp</name>
   <modules>
-    <module>DacarMavenApp-ear</module>
     <module>DacarMavenApp-web</module>
-    <module>DacarMavenApp-ejb</module>
-    <module>DacarMavenApp-jpa</module>
   </modules>
   
   <repositories>
