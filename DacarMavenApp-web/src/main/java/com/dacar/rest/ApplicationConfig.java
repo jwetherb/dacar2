@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dacar.resource;
+package com.dacar.rest;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
@@ -27,10 +27,10 @@ public class ApplicationConfig extends Application {
    * project. If required, comment out calling this method in getClasses().
    */
   private void addRestResourceClasses(Set<Class<?>> resources) {
-    resources.add(com.dacar.resource.RideRequestREST.class);
-    resources.add(com.dacar.resource.RiderFacadeREST.class);
-    resources.add(com.dacar.resource.TestREST.class);
-    resources.add(com.dacar.resource.VehicleFacadeREST.class);
+    resources.add(com.dacar.rest.RideRequestREST.class);
+    resources.add(com.dacar.rest.RiderFacadeREST.class);
+    resources.add(com.dacar.rest.TestREST.class);
+    resources.add(com.dacar.rest.VehicleFacadeREST.class);
   }
 
 }

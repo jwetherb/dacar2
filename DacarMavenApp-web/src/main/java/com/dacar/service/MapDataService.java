@@ -12,10 +12,8 @@ import com.dacar.facade.GeoTempDataFacade;
 import com.dacar.facade.GeoTempRoutesFacade;
 import com.dacar.maps.dacarmaps.DacarMapService;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import javax.annotation.PostConstruct;
@@ -65,9 +63,6 @@ public class MapDataService {
   private GeoTempRoutes assignGTRs(RideRequest req) {
     
     DacarMapService dms = new DacarMapService();
-    
-    String result = dms.testme();
-    System.out.println("result");
     
     GeoTempRoutes gtrs = req.getRoutes();
 
@@ -152,7 +147,11 @@ public class MapDataService {
   }
 
   /**
-   * Look up this req's start/end GCs in the GEO_ROUTES table. 
+   * Look up this req's start/end GCs in the GEO_ROUTES table.
+   * 
+   * - Start and End address strings may need to be cleaned up
+   * - First look each up in the address mapping table. This table maps user-specified addresses 
+   * First get the canonical representation of the 
    * 
    * If not found, we need to create an entry for this GR.
    * 

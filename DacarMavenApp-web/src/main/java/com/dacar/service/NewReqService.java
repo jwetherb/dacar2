@@ -50,21 +50,21 @@ public class NewReqService extends RequestService {
   public void handleRequest(RideRequest req) {
     System.out.println("Handling New request");
     
-    Set<RideRequest> matchedReqs = new HashSet<RideRequest>();
-    
-    //  Process this request's GR, in case it is the first time the system has
-    //  seen this GR
-    mapService.processGR(req);
-
-    //  Look for all reasonable matches among req's in the Unmatched pool
-    Set<String> otherReqKeys = mapService.getGTDMatches(req);
-    final RideRequest.RiderType riderType = req.getRiderType();
-
-    assignDriver(riderType, req, matchedReqs);
-
-    for (String otherReqKey : otherReqKeys) {
-      RideRequest other = reqFacade.find(otherReqKey);
-    }
+//    //  Process this request's GR, in case it is the first time the system has
+//    //  seen this GR
+//    mapService.processGR(req);
+//
+//    Set<RideRequest> matchedReqs = new HashSet<RideRequest>();
+//    
+//    //  Look for all reasonable matches among req's in the Unmatched pool
+//    Set<String> otherReqKeys = mapService.getGTDMatches(req);
+//    final RideRequest.RiderType riderType = req.getRiderType();
+//
+//    assignDriver(riderType, req, matchedReqs);
+//
+//    for (String otherReqKey : otherReqKeys) {
+//      RideRequest other = reqFacade.find(otherReqKey);
+//    }
 
   }
 

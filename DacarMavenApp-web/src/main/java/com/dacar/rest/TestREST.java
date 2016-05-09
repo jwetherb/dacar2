@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dacar.resource;
+package com.dacar.rest;
 
-import com.dacar.facade.RideRequestFacade;
 import com.dacar.service.RideRequestService;
 import com.dacar.service.TestService;
+import java.text.ParseException;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
@@ -44,15 +44,21 @@ public class TestREST {
   }
 
   @POST
-  @Path("resetTestData")
-  public void resetTestData() {
-    testService.resetTestData();
+  @Path("beginTestRequests")
+  public void beginTestRequests() throws ParseException {
+    testService.beginTestRequests();
+  }
+
+  @GET
+  @Path("dataDump")
+  public String dataDump() throws ParseException {
+    return testService.dataDump();
   }
 
   @POST
-  @Path("beginTestRequests")
-  public void beginTestRequests() {
-    testService.beginTestRequests();
+  @Path("resetTestData")
+  public void resetTestData() throws ParseException {
+    testService.resetTestData();
   }
 
 }

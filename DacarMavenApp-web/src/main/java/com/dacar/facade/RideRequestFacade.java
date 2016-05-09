@@ -34,7 +34,9 @@ public class RideRequestFacade extends AbstractFacade<RideRequest> {
   }
 
   public RideRequest newRideRequest(RideRequest entity) {
-    entity.setReqKey(UUID.randomUUID().toString());
+    if (entity.getReqKey() == null) {
+      entity.setReqKey(UUID.randomUUID().toString());
+    }
     entity.setStatus(RideRequest.RequestStatusType.NEW);
     super.create(entity);
     return entity;
@@ -93,7 +95,9 @@ public class RideRequestFacade extends AbstractFacade<RideRequest> {
       throw new RuntimeException("Missing Ride Code during Cancel");
     }
 
-    em.createQuery("delete from RideRequest o where o.reqKey like :reqKeyPattern");
+    em.createQuery("delete from RideRequest o where o.reqKey like :reqKeyPattern")
+            .setParameter("reqKeyPattern", reqKeyPattern)
+            .executeUpdate();
   }
 
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dacar.resource;
+package com.dacar.rest;
 
 import com.dacar.entity.Rider;
 import com.dacar.facade.AbstractFacade;
