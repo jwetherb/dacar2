@@ -30,8 +30,7 @@ public class DacarMapService {
       geocodes = GeocodingApi.geocode(_context, address).await();
       if (geocodes.length == 0) {
         System.out.println("No geocodes were found for address: " + address + "!!!");
-      }
-      else if (geocodes.length > 1) {
+      } else if (geocodes.length > 1) {
         System.out.println("Multiple geocodes were found for address: " + address + "!!!");
       }
       return geocodes[0].formattedAddress;

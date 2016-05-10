@@ -19,11 +19,11 @@ import javax.persistence.NamedQuery;
  */
 @NamedQueries({
   @NamedQuery(name = QueryNames.GeoTempRoutes_findByEndPoints,
-          query = "select o from GeoTempRoutes o where"
-                  + " o.startGC_lat = :startGC_lat and"
-                  + " o.startGC_lon = :startGC_lon and"
-                  + " o.endGC_lat = :endGC_lat and"
-                  + " o.endGC_lon = :endGC_lon")
+              query = "select o from GeoTempRoutes o where"
+                      + " o.startGC_lat = :startGC_lat and"
+                      + " o.startGC_lon = :startGC_lon and"
+                      + " o.endGC_lat = :endGC_lat and"
+                      + " o.endGC_lon = :endGC_lon")
 })
 @Entity
 public class GeoTempRoutes implements Serializable {

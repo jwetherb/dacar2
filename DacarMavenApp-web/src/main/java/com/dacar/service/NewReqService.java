@@ -9,7 +9,6 @@ import com.dacar.entity.RideRequest;
 import static com.dacar.entity.RideRequest.RiderType.*;
 import com.dacar.facade.RideRequestFacade;
 import com.dacar.facade.UnmatchedPoolFacade;
-import java.util.HashSet;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -39,8 +38,8 @@ public class NewReqService extends RequestService {
   /**
    * Process a new RideRequest. (N0)
    *
-   * 1) Derive the geo-temporal coordinates in the ride, across all available routes, and store in an in-memory map. 
-   * If able to be a passenger, try to match with an existing ride. If must be a driver create a new trip.
+   * 1) Derive the geo-temporal coordinates in the ride, across all available routes, and store in an in-memory map. If
+   * able to be a passenger, try to match with an existing ride. If must be a driver create a new trip.
    *
    * 1) Switch on the RiderType
    *
@@ -49,7 +48,7 @@ public class NewReqService extends RequestService {
   @Override
   public void handleRequest(RideRequest req) {
     System.out.println("Handling New request");
-    
+
 //    //  Process this request's GR, in case it is the first time the system has
 //    //  seen this GR
 //    mapService.processGR(req);
@@ -65,7 +64,6 @@ public class NewReqService extends RequestService {
 //    for (String otherReqKey : otherReqKeys) {
 //      RideRequest other = reqFacade.find(otherReqKey);
 //    }
-
   }
 
   private void assignDriver(final RideRequest.RiderType riderType, RideRequest req, Set<RideRequest> matchedReqs) {

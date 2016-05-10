@@ -17,8 +17,9 @@ import java.util.Map;
  * @author jonwetherbee
  */
 public class DacarUtils {
-  
-  private static final Map<String,String> addressMap = new HashMap();
+
+  private static final Map<String, String> addressMap = new HashMap();
+
   public static Date formatDate(String inputDate) throws ParseException {
     SimpleDateFormat input = new SimpleDateFormat("M-d-yy H:mm z", Locale.US);
     SimpleDateFormat output = new SimpleDateFormat("EEE MMM dd hh:mm a z yyyy", Locale.US);

@@ -19,17 +19,17 @@ import javax.persistence.NamedQuery;
  */
 @NamedQueries({
   @NamedQuery(name = QueryNames.GeoTempData_findByReqKey,
-          query = "select o from GeoTempData o where o.reqKey = :reqKey"),
+              query = "select o from GeoTempData o where o.reqKey = :reqKey"),
   @NamedQuery(name = QueryNames.GeoTempData_findReqKeys,
-          query = "select distinct(o.reqKey) from GeoTempData o"),
+              query = "select distinct(o.reqKey) from GeoTempData o"),
   @NamedQuery(name = QueryNames.GeoTempData_findByXYTlTu,
-          query = "select distinct(o.reqKey) from GeoTempData o where o.x = :x and o.y = :y and :t_lower < (o.t_preferred + o.t_upper) and :t_upper > (o.t_preferred - o.t_lower)"),
+              query = "select distinct(o.reqKey) from GeoTempData o where o.x = :x and o.y = :y and :t_lower < (o.t_preferred + o.t_upper) and :t_upper > (o.t_preferred - o.t_lower)"),
   @NamedQuery(name = QueryNames.GeoTempData_findByX,
-          query = "select distinct(o.reqKey) from GeoTempData o where o.x = :x"),
+              query = "select distinct(o.reqKey) from GeoTempData o where o.x = :x"),
   @NamedQuery(name = QueryNames.GeoTempData_findByY,
-          query = "select distinct(o.reqKey) from GeoTempData o where o.y = :y"),
+              query = "select distinct(o.reqKey) from GeoTempData o where o.y = :y"),
   @NamedQuery(name = QueryNames.GeoTempData_findByT,
-          query = "select distinct(o.reqKey) from GeoTempData o where :t between o.t_lower and o.t_upper"),})
+              query = "select distinct(o.reqKey) from GeoTempData o where :t between o.t_lower and o.t_upper"),})
 @Entity
 public class GeoTempData implements Serializable {
 

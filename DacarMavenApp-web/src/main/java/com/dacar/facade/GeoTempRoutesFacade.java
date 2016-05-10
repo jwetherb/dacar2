@@ -33,11 +33,11 @@ public class GeoTempRoutesFacade extends AbstractFacade<GeoTempRoutes> {
 
   /**
    * <code>
-   * @NamedQuery(name = QueryNames.GeoTempRoutes_findByEndPoints, 
+   * @NamedQuery(name = QueryNames.GeoTempRoutes_findByEndPoints,
    *     query = "select o from GeoTempRoutes o where" +
-   *             "o.startGC_lat = :startGC_lat " + 
-   *             "and o.startGC_lon = :startGC_lon" + 
-   *             "and o.endGC_lat = :endGC_lat" + 
+   *             "o.startGC_lat = :startGC_lat " +
+   *             "and o.startGC_lon = :startGC_lon" +
+   *             "and o.endGC_lat = :endGC_lat" +
    *             "and o.endGC_lon = :endGC+lon")
    * </code>
    * @param y
@@ -45,16 +45,15 @@ public class GeoTempRoutesFacade extends AbstractFacade<GeoTempRoutes> {
    */
   public GeoTempRoutes getGTRByEndPoints(int startGC_lat, int startGC_lon, int endGC_lat, int endGC_lon) {
     List<GeoTempRoutes> gtrs = em.createNamedQuery(QueryNames.GeoTempRoutes_findByEndPoints, GeoTempRoutes.class).
-            setParameter("startGC_lat", startGC_lat).
-            setParameter("startGC_lon", startGC_lon).
-            setParameter("endGC_lat", endGC_lat).
-            setParameter("endGC_lon", endGC_lon).
-            getResultList();
-    
+        setParameter("startGC_lat", startGC_lat).
+        setParameter("startGC_lon", startGC_lon).
+        setParameter("endGC_lat", endGC_lat).
+        setParameter("endGC_lon", endGC_lon).
+        getResultList();
+
     if (gtrs.size() == 0) {
       return null;
-    }
-    else if (gtrs.size() == 1) {
+    } else if (gtrs.size() == 1) {
       return gtrs.get(0);
     }
     throw new RuntimeException("DAC-600: Too many results found by getGTRByEndPoints()");

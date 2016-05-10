@@ -24,9 +24,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
   @NamedQuery(name = QueryNames.RideRequest_findByKey,
-          query = "select o from RideRequest o where o.reqKey = :reqKey"),
+              query = "select o from RideRequest o where o.reqKey = :reqKey"),
   @NamedQuery(name = QueryNames.RideRequest_findByStatus,
-          query = "select o from RideRequest o where o.status = :status")
+              query = "select o from RideRequest o where o.status = :status")
 })
 public class RideRequest implements Serializable {
 

@@ -74,20 +74,20 @@ public class RideRequestFacade extends AbstractFacade<RideRequest> {
 
   public List<RideRequest> getNewRequests() {
     return em.createNamedQuery(QueryNames.RideRequest_findByStatus).
-            setParameter("status", RequestStatusType.NEW).
-            getResultList();
+        setParameter("status", RequestStatusType.NEW).
+        getResultList();
   }
 
   public List<RideRequest> getUpdatedRequests() {
     return em.createNamedQuery(QueryNames.RideRequest_findByStatus).
-            setParameter("status", RequestStatusType.UPDATED).
-            getResultList();
+        setParameter("status", RequestStatusType.UPDATED).
+        getResultList();
   }
 
   public List<RideRequest> getCancelledRequests() {
     return em.createNamedQuery(QueryNames.RideRequest_findByStatus).
-            setParameter("status", RequestStatusType.CANCELLED).
-            getResultList();
+        setParameter("status", RequestStatusType.CANCELLED).
+        getResultList();
   }
 
   public void removeByReqKeyPattern(String reqKeyPattern) {
@@ -96,8 +96,8 @@ public class RideRequestFacade extends AbstractFacade<RideRequest> {
     }
 
     em.createQuery("delete from RideRequest o where o.reqKey like :reqKeyPattern")
-            .setParameter("reqKeyPattern", reqKeyPattern)
-            .executeUpdate();
+        .setParameter("reqKeyPattern", reqKeyPattern)
+        .executeUpdate();
   }
 
 }

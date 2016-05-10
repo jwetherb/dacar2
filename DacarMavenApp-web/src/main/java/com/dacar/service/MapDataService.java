@@ -61,9 +61,9 @@ public class MapDataService {
   }
 
   private GeoTempRoutes assignGTRs(RideRequest req) {
-    
+
     DacarMapService dms = new DacarMapService();
-    
+
     GeoTempRoutes gtrs = req.getRoutes();
 
     //  Request already knows its routes
@@ -74,12 +74,10 @@ public class MapDataService {
 //    if (reqKeys.contains(req.getReqKey())) {
 //      return gtdFacade.getByReqKey(req.getReqKey());
 //    }
-
     //  Look up the route by start/end coords. We cache all routes we've been given by Google
     //  so we should never have to derive the same route twice.
 //    gtrs = gtrFacade.getGTRByEndPoints(req.getStartLocation()[0], req.getStartLocation()[1], 
 //            req.getEndLocation()[0], req.getEndLocation()[1]);
-
     //  TO DO: Get the real data from Google somehow. For now, this is just
     //  a dummy data generator. It cycles slight variances of A, B, and C
     //  routes, with three requests along each route. Then moves on to D, E,
@@ -135,9 +133,9 @@ public class MapDataService {
     if (myGtds != null) {
       for (GeoTempData myGtd : myGtds) {
         List<String> reqKeys = gtdFacade.getReqKeysByXYT(myGtd.getX(),
-                myGtd.getY(),
-                myGtd.getT_preferred() - myGtd.getT_lower(),
-                myGtd.getT_preferred() + myGtd.getT_upper());
+                                                         myGtd.getY(),
+                                                         myGtd.getT_preferred() - myGtd.getT_lower(),
+                                                         myGtd.getT_preferred() + myGtd.getT_upper());
         matchingReqKeys.addAll(reqKeys);
       }
     }
@@ -148,21 +146,21 @@ public class MapDataService {
 
   /**
    * Look up this req's start/end GCs in the GEO_ROUTES table.
-   * 
-   * - Start and End address strings may need to be cleaned up
-   * - First look each up in the address mapping table. This table maps user-specified addresses 
-   * First get the canonical representation of the 
-   * 
+   *
+   * - Start and End address strings may need to be cleaned up - First look each up in the address mapping table. This
+   * table maps user-specified addresses First get the canonical representation of the
+   *
    * If not found, we need to create an entry for this GR.
-   * 
+   *
    * Ask Google for the preferred and alternate routes between these start/end GCs, and store this as an int [][][]
    * array in the GEO_ROUTES table.
-   * 
+   *
    * Derive the list of compatible GRs already known to the system, and for each, store the GR_ID and the minutes that
    * route adds to this on. Store these values in ascending order by minutes. Since each GR may have multiple paths
-   * @param req 
+   *
+   * @param req
    */
   public void processGR(RideRequest req) {
-    
+
   }
 }

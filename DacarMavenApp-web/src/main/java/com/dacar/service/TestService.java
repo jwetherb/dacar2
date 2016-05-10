@@ -45,7 +45,7 @@ public class TestService {
 
     int wait = 10000;
     int counter = 0;
-    
+
     RideRequest a2g = createRideRequest(ashwood, google, "5-2-16 7:30 pdt", wait, counter++);
     RideRequest c2g = createRideRequest(colgate, google, "5-2-16 7:15 pdt", wait, counter++);
     RideRequest a2o = createRideRequest(amnesia, oracle, "5-2-16 7:00 pdt", wait, counter++);
@@ -53,9 +53,9 @@ public class TestService {
     RideRequest f2o = createRideRequest(foreignCinema, oracle, "5-2-16 7:30 pdt", wait, counter++);
     RideRequest m2o = createRideRequest(monksKettle, oracle, "5-2-16 7:45 pdt", wait, counter++);
   }
-  
+
   private RideRequest createRideRequest(String startLocation, String endLocation, String leaveBy, int wait, int counter)
-          throws ParseException {
+      throws ParseException {
     final RideRequest req = new RideRequest();
     req.setReqKey("TEST" + counter);
     req.setStartLocation(dacarMapService.getNormalizedAddress(startLocation));
@@ -71,26 +71,25 @@ public class TestService {
 //        Logger.getLogger(TestService.class.getName()).log(Level.SEVERE, null, ex);
 //      }
 //    }
-
     return req;
   }
 
   public String dataDump() {
     StringBuilder data = new StringBuilder();
-    
+
     //  DacarMapService.getAddressMap()
-    Map<String,String> addressMap = dacarMapService.getAddressMap();
-    for (Map.Entry<String,String> entry : addressMap.entrySet()) {
+    Map<String, String> addressMap = dacarMapService.getAddressMap();
+    for (Map.Entry<String, String> entry : addressMap.entrySet()) {
       System.out.println(entry.getKey() + " -> " + entry.getValue());
       data.append(entry.getKey() + " -> " + entry.getValue() + '\n');
     }
-    
+
     List<RideRequest> reqs;
-    
+
     dataDumpReqs(data, reqFacade.getNewRequests(), "NEW Requests:\n");
     dataDumpReqs(data, reqFacade.getUpdatedRequests(), "UPDATED Requests:\n");
     dataDumpReqs(data, reqFacade.getCancelledRequests(), "CANCELLED Requests:\n");
-    
+
     return data.toString();
   }
 
@@ -98,7 +97,7 @@ public class TestService {
     //  RideRequestFacade.getNewRequests();
     data.append(header);
     for (RideRequest req : reqs) {
-      data.append(req.getReqKey()+" ; START: "+req.getStartLocation()+" ; END: "+req.getEndLocation()+'\n');
+      data.append(req.getReqKey() + " ; START: " + req.getStartLocation() + " ; END: " + req.getEndLocation() + '\n');
     }
   }
 

@@ -66,18 +66,18 @@ public class DacarMapServiceTest {
     System.out.println(oracle);
 
     DirectionsApiRequest req = DirectionsApi
-            .newRequest(_context)
-            .origin(ashwood)
-            .destination(oracle)
-            .alternatives(true);
+        .newRequest(_context)
+        .origin(ashwood)
+        .destination(oracle)
+        .alternatives(true);
 
     getDirectionsSynch(req);
 
     req = DirectionsApi
-            .newRequest(_context)
-            .origin(ashwood)
-            .destination(oracle)
-            .alternatives(true);
+        .newRequest(_context)
+        .origin(ashwood)
+        .destination(oracle)
+        .alternatives(true);
     getDirectionsAsynch(req);
     System.out.println("Done");
 
@@ -102,10 +102,10 @@ public class DacarMapServiceTest {
     String param2 = "destination";
     String args2 = "200%20Oracle%20Pkwy,%20Redwood%20Shores,%20CA";
     String directionsResult = ClientBuilder.newClient()
-            .target(baseUrl).path(mapApi)
-            .queryParam(param1, args1)
-            .queryParam(param2, args2)
-            .request().get(String.class);
+        .target(baseUrl).path(mapApi)
+        .queryParam(param1, args1)
+        .queryParam(param2, args2)
+        .request().get(String.class);
     System.out.println(directionsResult);
 
     return "Success!!";
