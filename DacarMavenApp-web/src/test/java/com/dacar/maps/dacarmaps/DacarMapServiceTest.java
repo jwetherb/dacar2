@@ -33,7 +33,7 @@ public class DacarMapServiceTest {
   /**
    * @param args the command line arguments
    */
-  @Test
+  //@Test
   public void mainTest() {
     final DacarMapService dms = new DacarMapService();
     try {

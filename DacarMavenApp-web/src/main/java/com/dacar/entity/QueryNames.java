@@ -13,6 +13,9 @@ public interface QueryNames {
 
   public static final String RideRequest_findByKey = "RideRequest.findByKey";
   public static final String RideRequest_findByStatus = "RideRequest.findByStatus";
+  public static final String RouteCompatibility_findByOrigin = "RouteCompatibility.findByOrigin";
+  public static final String RouteCompatibility_findByWrapperEndpoints = "RouteCompatibility.findByWrapperEndpoints";
+  public static final String RouteCompatibility_findByAllEndpoints = "RouteCompatibility.findByAllEndpoints";
   public static final String GeoTempData_findReqKeys = "GeoTempData.findReqKeys";
   public static final String GeoTempData_findByReqKey = "GeoTempData.findByReqKey";
   public static final String GeoTempData_findByXYTlTu = "GeoTempData.findByXYTlTu";

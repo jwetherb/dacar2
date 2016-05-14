@@ -54,12 +54,16 @@ public class TestService {
     RideRequest m2o = createRideRequest(monksKettle, oracle, "5-2-16 7:45 pdt", wait, counter++);
   }
 
-  private RideRequest createRideRequest(String startLocation, String endLocation, String leaveBy, int wait, int counter)
+  private RideRequest createRideRequest(String startLocation, 
+                                        String endLocation, 
+                                        String leaveBy,                                
+                                        int wait, 
+                                        int counter)
       throws ParseException {
     final RideRequest req = new RideRequest();
     req.setReqKey("TEST" + counter);
-    req.setStartLocation(dacarMapService.getNormalizedAddress(startLocation));
-    req.setEndLocation(dacarMapService.getNormalizedAddress(endLocation));
+    req.setOrigin(dacarMapService.getNormalizedAddress(startLocation));
+    req.setDestination(dacarMapService.getNormalizedAddress(endLocation));
     req.setDepartureTime(DacarUtils.formatDate(leaveBy));
 
     reqFacade.newRideRequest(req);
@@ -97,7 +101,7 @@ public class TestService {
     //  RideRequestFacade.getNewRequests();
     data.append(header);
     for (RideRequest req : reqs) {
-      data.append(req.getReqKey() + " ; START: " + req.getStartLocation() + " ; END: " + req.getEndLocation() + '\n');
+      data.append(req.getReqKey() + " ; START: " + req.getOrigin() + " ; END: " + req.getDestination() + '\n');
     }
   }
 

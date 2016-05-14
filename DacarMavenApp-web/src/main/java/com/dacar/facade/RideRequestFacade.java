@@ -71,6 +71,12 @@ public class RideRequestFacade extends AbstractFacade<RideRequest> {
     entity.setStatus(RideRequest.RequestStatusType.CANCELLED);
     super.edit(entity);
   }
+  
+  public List<RideRequest> getRequestsByStatus(RequestStatusType status) {
+    return em.createNamedQuery(QueryNames.RideRequest_findByStatus).
+        setParameter("status", status).
+        getResultList();
+  }
 
   public List<RideRequest> getNewRequests() {
     return em.createNamedQuery(QueryNames.RideRequest_findByStatus).

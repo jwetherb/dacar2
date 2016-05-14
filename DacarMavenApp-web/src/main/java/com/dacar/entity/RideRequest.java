@@ -7,6 +7,7 @@ package com.dacar.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -14,6 +15,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import static javax.persistence.TemporalType.*;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -30,10 +32,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 })
 public class RideRequest implements Serializable {
 
+  /**
+   * NEW -- added through a NEW rest call UPDATED -- added through an UPDATE rest call CANCELLED -- added through a
+   * CANCELLED rest call UNMATCHED -- processed from NEW or UPDATED, but not matched MATCHED -- processed from NEW or
+   * UPDATED, and matched
+   */
   public static enum RequestStatusType {
     NEW,
     UPDATED,
     CANCELLED,
+    UNMATCHED,
     MATCHED
   }
 
@@ -63,6 +71,10 @@ public class RideRequest implements Serializable {
   @Temporal(TIMESTAMP)
   private Date createDate;
   private RequestStatusType status = RequestStatusType.NEW;
+  /**
+   * Map of reqKey->[thisRouteNum,otherRouteNum,time,distance] where a routeNum is the index that specifies which of
+   * possibly multiple routes
+   */
   private String reqHandler;
   @ManyToOne
   private Rider rider;
@@ -71,9 +83,9 @@ public class RideRequest implements Serializable {
   @ManyToOne
   private GeoTempRoutes routes;
   private RiderType riderType = RiderType.CAN_BE_DRIVER_OR_PASSENGER;
-  private String startLocation;
+  private String origin;
   private int acceptableStartRadius;
-  private String endLocation;
+  private String destination;
   private int acceptableEndRadius;
   @Temporal(TIMESTAMP)
   private Date departureTime;
@@ -219,17 +231,17 @@ public class RideRequest implements Serializable {
   }
 
   /**
-   * @return the startLocation
+   * @return the origin
    */
-  public String getStartLocation() {
-    return startLocation;
+  public String getOrigin() {
+    return origin;
   }
 
   /**
-   * @param startLocation the startLocation to set
+   * @param origin the origin to set
    */
-  public void setStartLocation(String startLocation) {
-    this.startLocation = startLocation;
+  public void setOrigin(String origin) {
+    this.origin = origin;
   }
 
   /**
@@ -247,17 +259,17 @@ public class RideRequest implements Serializable {
   }
 
   /**
-   * @return the endLocation
+   * @return the destination
    */
-  public String getEndLocation() {
-    return endLocation;
+  public String getDestination() {
+    return destination;
   }
 
   /**
-   * @param endLocation the endLocation to set
+   * @param destination the destination to set
    */
-  public void setEndLocation(String endLocation) {
-    this.endLocation = endLocation;
+  public void setDestination(String destination) {
+    this.destination = destination;
   }
 
   /**
@@ -460,6 +472,16 @@ public class RideRequest implements Serializable {
       return false;
     }
     return true;
+  }
+
+  @Transient
+  public String getEndpoints() {
+    return getEndpoints(getOrigin(), getDestination());
+  }
+
+  @Transient
+  public static String getEndpoints(String origin, String destination) {
+    return origin + "->" + destination;
   }
 
   @Override
