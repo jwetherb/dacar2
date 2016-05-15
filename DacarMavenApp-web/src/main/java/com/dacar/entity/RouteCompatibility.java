@@ -72,7 +72,7 @@ public class RouteCompatibility implements Serializable {
 
   @Override
   public String toString() {
-    return "com.dacar.entity.RouteCompatibility[ id=" + origin + " ]";
+    return "Origin: " + origin + "; Destination: " + destination + "; OtherOrigin: " + otherOrigin + "; OtherDestination: " + otherDestination;
   }
 
   /**

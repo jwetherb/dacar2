@@ -95,7 +95,7 @@ public class RideRequest implements Serializable {
   private Date arrivalTime;
   private int arrivalBeforeMins;
   private int arrivalAfterMins;
-  private int maxTravelTime;
+  private int additionalMinutesAccepted;
   private boolean multilegDirect;
   private int multilegNumSegments;
   private boolean multilegUseTransit;
@@ -371,17 +371,17 @@ public class RideRequest implements Serializable {
   }
 
   /**
-   * @return the maxTravelTime
+   * @return the additionalMinutesAccepted
    */
-  public int getMaxTravelTime() {
-    return maxTravelTime;
+  public int getAdditionalMinutesAccepted() {
+    return additionalMinutesAccepted;
   }
 
   /**
-   * @param maxTravelTime the maxTravelTime to set
+   * @param additionalMinutesAccepted the additionalMinutesAccepted to set
    */
-  public void setMaxTravelTime(int maxTravelTime) {
-    this.maxTravelTime = maxTravelTime;
+  public void setAdditionalMinutesAccepted(int additionalMinutesAccepted) {
+    this.additionalMinutesAccepted = additionalMinutesAccepted;
   }
 
   /**
@@ -486,7 +486,7 @@ public class RideRequest implements Serializable {
 
   @Override
   public String toString() {
-    return "com.dacar.entity.RideRequest2[ reqKey=" + reqKey + " ]";
+    return "Origin: " + origin + "; Destination: " + destination;
   }
 
 }

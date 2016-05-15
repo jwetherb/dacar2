@@ -6,6 +6,7 @@
 package com.dacar.service;
 
 import com.dacar.entity.RideRequest;
+import com.dacar.entity.RideRequest.RiderType;
 import com.dacar.facade.RideRequestFacade;
 import com.dacar.maps.dacarmaps.DacarMapService;
 import com.dacar.util.DacarUtils;
@@ -46,25 +47,27 @@ public class TestService {
     int wait = 10000;
     int counter = 0;
 
-    RideRequest a2g = createRideRequest(ashwood, google, "5-2-16 7:30 pdt", wait, counter++);
-    RideRequest c2g = createRideRequest(colgate, google, "5-2-16 7:15 pdt", wait, counter++);
-    RideRequest a2o = createRideRequest(amnesia, oracle, "5-2-16 7:00 pdt", wait, counter++);
-    RideRequest c2o = createRideRequest(chapel, oracle, "5-2-16 7:15 pdt", wait, counter++);
-    RideRequest f2o = createRideRequest(foreignCinema, oracle, "5-2-16 7:30 pdt", wait, counter++);
-    RideRequest m2o = createRideRequest(monksKettle, oracle, "5-2-16 7:45 pdt", wait, counter++);
+    RideRequest a2g = createRideRequest(ashwood, google, "5-2-16 7:30 pdt", wait, counter++, RiderType.CAN_BE_DRIVER_OR_PASSENGER);
+    RideRequest c2g = createRideRequest(colgate, google, "5-2-16 7:15 pdt", wait, counter++, RiderType.MUST_BE_PASSENGER);
+    RideRequest a2o = createRideRequest(amnesia, oracle, "5-2-16 7:00 pdt", wait, counter++, RiderType.CAN_BE_DRIVER_OR_PASSENGER);
+    RideRequest c2o = createRideRequest(chapel, oracle, "5-2-16 7:15 pdt", wait, counter++, RiderType.MUST_BE_DRIVER);
+    RideRequest f2o = createRideRequest(foreignCinema, oracle, "5-2-16 7:30 pdt", wait, counter++, RiderType.MUST_BE_PASSENGER);
+    RideRequest m2o = createRideRequest(monksKettle, oracle, "5-2-16 7:45 pdt", wait, counter++, RiderType.PREFER_TO_BE_PASSENGER);
   }
 
   private RideRequest createRideRequest(String startLocation, 
                                         String endLocation, 
                                         String leaveBy,                                
                                         int wait, 
-                                        int counter)
+                                        int counter,
+                                        RiderType riderType)
       throws ParseException {
     final RideRequest req = new RideRequest();
     req.setReqKey("TEST" + counter);
     req.setOrigin(dacarMapService.getNormalizedAddress(startLocation));
     req.setDestination(dacarMapService.getNormalizedAddress(endLocation));
     req.setDepartureTime(DacarUtils.formatDate(leaveBy));
+    req.setAdditionalMinutesAccepted(10);
 
     reqFacade.newRideRequest(req);
 
